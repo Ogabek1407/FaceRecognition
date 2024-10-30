@@ -13,7 +13,8 @@ def load_image_encodings(image_paths):
         # Rasm ichidagi yuz encodingini olish
         enc = face_recognition.face_encodings(rgb_image)
         if enc:
-            encodings.append(enc[0])
+            for i in enc:
+                encodings.append(i)
         else:
             print(f"Yuz topilmadi: {img_path}")
     return encodings
@@ -53,14 +54,14 @@ def process_video(video_path, known_encodings):
     video_capture.release()
     cv2.destroyAllWindows()
 
+
 # === 3. Rasmlar va video yo‘llarini berish ===
 image_paths = [
-    r"C:\\Users\\hp-se\\OneDrive\\Pictures\WIN_20241029_22_26_33_Pro.jpg",
-    r"C:\\Users\\hp-se\\OneDrive\\Pictures\WIN_20241029_22_26_31_Pro.jpg",
-    r"C:\\Users\\hp-se\\OneDrive\\Pictures\WIN_20241029_22_26_22_Pro.jpg",
-    r"C:\\Users\\hp-se\\OneDrive\\Pictures\WIN_20241029_22_26_21_Pro.jpg"
+    r"C:\\Users\\hp-se\\Pictures\\5264904665764597917.jpg",
+    r"C:\\Users\\hp-se\\OneDrive\\Pictures\\WIN_20241029_23_15_19_Pro.jpg",
+    r"C:\\Users\\hp-se\\OneDrive\\Pictures\\WIN_20241029_22_26_21_Pro.jpg"
 ]
-video_path = r"C:\\Users\\hp-se\\OneDrive\\Pictures\WIN_20241029_22_25_25_Pro.mp4"
+video_path = r"C:\\Users\\hp-se\\Pictures\\WIN_20241029_23_14_31_Pro.mp4"
 
 # === 4. Rasmlarni yuklab, ularning encodinglarini olish ===
 known_encodings = load_image_encodings(image_paths)
