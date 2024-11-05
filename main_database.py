@@ -58,11 +58,11 @@ def load_image_encodings(image_paths):
     return encodings
 
 # === 2. Videoni qayta ishlash va yuzlarni solishtirish ===
-def process_video(video_path):
+def process_video():
     known_names, known_encodings = load_encodings()  # Ma'lumotlar bazasidan yuklash
     new_person_index = len(known_names) + 1  # Yangi odamlarni raqamlash uchun
 
-    video_capture = cv2.VideoCapture(video_path)
+    video_capture = cv2.VideoCapture(0)
 
     while video_capture.isOpened():
         ret, frame = video_capture.read()
@@ -95,7 +95,7 @@ def process_video(video_path):
 
         cv2.imshow("Video", frame)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('p'):
             break
 
     video_capture.release()
@@ -115,4 +115,5 @@ create_database()
 known_encodings = load_image_encodings(image_paths)
 
 # === 6. Video ichidagi yuzlarni rasmlar bilan taqqoslash ===
-process_video(video_path)
+process_video()
+# process_video(video_path)
